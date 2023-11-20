@@ -31,7 +31,7 @@ public class UserPromptUtil {
                 difficultyType = new GameDifficulty(30, 16, 99);
                 break;
             case "custom":
-                System.out.print("Enter the width, height and mines number for the board: ");
+                System.out.print("Enter the width, height and mines number for the board (x y m): ");
                 difficultyType = ValidatePromptUtil.validateBoardAttributes(difficultyType);
                 break;
         }
