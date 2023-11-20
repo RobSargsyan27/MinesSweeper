@@ -16,8 +16,14 @@ public class ValidatePromptUtil {
     }
 
     private static int validateAttribute(String input){
-        String[] formattedInput = input.split("\\D");
-        return formattedInput.length < 1 ? 0 : Integer.parseInt(formattedInput[0]);
+        ArrayList<String> inputArray = new ArrayList<>(Arrays.asList(input.split("\\D")));
+        ArrayList<String> sanitizedArray = new ArrayList<>();
+        for(int i = 0; i < inputArray.size(); i++){
+            if(VALID_NUMBER.matcher(inputArray.get(i)).matches()){
+                sanitizedArray.add(inputArray.get(i));
+            }
+        }
+        return sanitizedArray.isEmpty() ? 0 : Integer.parseInt(sanitizedArray.get(0));
     }
 
     private static String[] validateAttributes(String input){
@@ -28,7 +34,6 @@ public class ValidatePromptUtil {
                 sanitizedArray.add(inputArray.get(i));
             }
         }
-
         return sanitizedArray.toArray(new String[0]);
     }
 
@@ -59,27 +64,26 @@ public class ValidatePromptUtil {
         difficultyType.setMinesNumber(Integer.parseInt(inputArray[2]));
 
         while (difficultyType.getWidth() == 0) {
-            System.out.print("Invalid width: Enter a width between 1 and 40: ");
+            System.out.print("Invalid width: Enter a width between 3 and 40: ");
             int formattedInput = validateAttribute(scanner.nextLine());
             if(formattedInput != 0){
                 difficultyType.setWidth(formattedInput);
             }
         }
         while (difficultyType.getHeight() == 0) {
-            System.out.print("Invalid height: Enter a height between 1 and 50: ");
+            System.out.print("Invalid height: Enter a height between 3 and 50: ");
             int formattedInput = validateAttribute(scanner.nextLine());
-            difficultyType.setHeight(formattedInput);
             if(formattedInput != 0){
                 difficultyType.setHeight(formattedInput);
             }
 
         }
+
         while (difficultyType.getMinesNumber() == 0 || difficultyType.getMinesNumber() > (difficultyType.getHeight() * difficultyType.getWidth() / 3)) {
             System.out.print("Invalid mines number: Enter a mines number between 1 and " + (difficultyType.getHeight() * difficultyType.getWidth() / 3) + ": ");
             int formattedInput = validateAttribute(scanner.nextLine());
-            difficultyType.setMinesNumber(formattedInput);
             if(formattedInput != 0){
-                difficultyType.setHeight(formattedInput);
+                difficultyType.setMinesNumber(formattedInput);
             }
         }
 

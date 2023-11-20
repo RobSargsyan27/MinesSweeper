@@ -30,13 +30,13 @@ public class GameDifficulty {
     }
 
     public void setWidth(int width) {
-        if(width < 41 && width > 0){
+        if(width < 41 && width > 2){
             this.width = width;
         }
     }
 
     public void setHeight(int height) {
-        if(height < 51 && height > 0){
+        if(height < 51 && height > 2){
             this.height = height;
         }
     }
