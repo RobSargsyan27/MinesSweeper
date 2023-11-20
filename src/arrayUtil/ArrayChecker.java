@@ -2,7 +2,6 @@ package arrayUtil;
 
 import gameDifficulty.GameDifficulty;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public class ArrayChecker {
@@ -28,11 +27,6 @@ public class ArrayChecker {
     private static void openEmptyCells(String[][] closeBoard, String[][] openBoard, String[] command) {
         int column = Integer.parseInt(command[0]);
         int row = Integer.parseInt(command[1]);
-
-        // Stop the recursion if the cell is already open or out of bounds
-        if (!isCellValidAndClosed(row, column, closeBoard)) {
-            return;
-        }
 
         // Open the current cell
         closeBoard[row][column] = openBoard[row][column];
