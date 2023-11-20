@@ -88,13 +88,16 @@ public class ValidatePromptUtil {
 
     public static boolean validateUserCoordinate(String[][] closeBoard , ArrayList<String> command, GameDifficulty difficultyType ){
         boolean isValid = true;
+        if(command.size() < 2) {
+            System.out.println("Invalid coordinate: Please enter valid number of arguments");
+            command.clear();
+            return false;
+        }
+
         int column = Integer.parseInt(command.get(0));
         int row = Integer.parseInt(command.get(1));
 
-        if(command.size() < 2){
-            System.out.println("Invalid coordinate: Please enter valid number of arguments");
-            isValid = false;
-        }else if(Integer.parseInt(command.get(0)) < 0 || Integer.parseInt(command.get(0)) >= difficultyType.getWidth()){
+        if(Integer.parseInt(command.get(0)) < 0 || Integer.parseInt(command.get(0)) >= difficultyType.getWidth()){
             System.out.println("Invalid x value: The x value should be between 1 and " + difficultyType.getWidth());
             isValid = false;
         }else if(Integer.parseInt(command.get(1)) < 0 || Integer.parseInt(command.get(1)) >= difficultyType.getHeight()){
@@ -108,7 +111,7 @@ public class ValidatePromptUtil {
             isValid = false;
         }
 
-        if (!isValid){
+        if(!isValid){
             command.clear();
         }
 

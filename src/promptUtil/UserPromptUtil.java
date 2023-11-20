@@ -8,6 +8,7 @@ import gameDifficulty.GameDifficulty;
 
 public class UserPromptUtil {
     static Scanner scanner = new Scanner(System.in);
+    static final Pattern VALID_NUMBER = Pattern.compile("\\d+");
 
     private UserPromptUtil() {
         throw new AssertionError("Utility can not create an object");
@@ -56,7 +57,6 @@ public class UserPromptUtil {
             //Sanitize the coordinate and check if the user wants to put a flag
             String[] inputSplit = input.split("\\D");
             boolean hasFlag = input.endsWith("-f");
-            final Pattern VALID_NUMBER = Pattern.compile("\\d+");
 
             for(int i = 0; i < inputSplit.length; i++){
                 if(VALID_NUMBER.matcher(inputSplit[i]).matches() && sanitizedInput.size() < 2){
@@ -69,6 +69,8 @@ public class UserPromptUtil {
             if(hasFlag){
                 sanitizedInput.add("flag");
             }
+
+            System.out.print("Sanitized" + sanitizedInput);
 
             //Validate the given coordinates according to the board width and height
             //Validate the flag option for the given cell
