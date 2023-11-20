@@ -30,7 +30,7 @@ public class ArrayChecker {
         int row = Integer.parseInt(command[1]);
 
         // Stop the recursion if the cell is already open or out of bounds
-        if (!isCellValidAndClosed(row, column, closeBoard, openBoard)) {
+        if (!isCellValidAndClosed(row, column, closeBoard)) {
             return;
         }
 
@@ -42,7 +42,7 @@ public class ArrayChecker {
             for (int i = row - 1; i <= row + 1; i++) {
                 for (int j = column - 1; j <= column + 1; j++) {
                     // Recursive call for adjacent cells
-                    if (isCellValidAndClosed(i, j, closeBoard, openBoard)) {
+                    if (isCellValidAndClosed(i, j, closeBoard)) {
                         openEmptyCells(closeBoard, openBoard, new String[]{String.valueOf(j), String.valueOf(i)});
                     }
                 }
@@ -51,9 +51,9 @@ public class ArrayChecker {
     }
 
     // Check if a cell is valid and closed
-    private static boolean isCellValidAndClosed(int row, int column, String[][] closeBoard, String[][] openBoard) {
-        return row >= 0 && row < openBoard.length &&
-                column >= 0 && column < openBoard[row].length &&
+    private static boolean isCellValidAndClosed(int row, int column, String[][] closeBoard) {
+        return row >= 0 && row < closeBoard.length &&
+                column >= 0 && column < closeBoard[row].length &&
                 closeBoard[row][column].equals("#");
     }
     public static void checkCoordinate(String[][] closeBoard, String[][] openBoard, String[] command){
