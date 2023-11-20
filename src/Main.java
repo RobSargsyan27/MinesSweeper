@@ -1,5 +1,6 @@
 import arrayUtil.ArrayChecker;
 import arrayUtil.ArrayInitializer;
+import arrayUtil.ArrayValidator;
 import printerUtil.BoardPrinter;
 import printerUtil.GreetingPrinter;
 import gameDifficulty.GameDifficulty;
@@ -32,6 +33,7 @@ public class Main {
         boolean toRestart = false;
         boolean isFirstTurn = true;
         int flagCount = 0;
+        String playerStatusAfterGame;
 
         //Get the current time for timer
         long startTime = System.currentTimeMillis();
@@ -57,6 +59,16 @@ public class Main {
             //Determine the current game timer
             int[] timer = TimerUtil.getInterval(startTime, System.currentTimeMillis());
             BoardPrinter.printBoard(initialCloseBoard, timer);
+
+            //Determine whether to continue the game
+            if(ArrayValidator.validateArray(initialCloseBoard, initialOpenBoard).equals("winner")
+                    || ArrayValidator.validateArray(initialCloseBoard, initialOpenBoard).equals("loser")){
+                isActive = false;
+                playerStatusAfterGame = ArrayValidator.validateArray(initialCloseBoard, initialOpenBoard);
+            }
         }
+
+
+
     }
 }
