@@ -31,20 +31,24 @@ public final class BoardPrinter {
         return formattedString;
     }
 
-    private static String printTime(int[] timer, int line){
+    private static String printHeader(int[] timer, int flagCount){
         int minutes = timer[0];
         int seconds = timer[1];
+        String formattedMinutes = timer[0] < 10 ? "0" + timer[0] : String.valueOf(timer[0]);
+        String formattedSeconds = timer[1] < 10 ? "0" + timer[1] : String.valueOf(timer[1]);
+        String header = "null";
 
-        if(line == 0 || line == 2){
-            return padding(10, "------------------------------", "------------------------------".length());
-        }else if(line == 1){
-            String formattedMinutes = minutes < 10 ? "0" + minutes : String.valueOf(minutes);
-            String formattedSeconds = seconds < 10 ? "0" + seconds : String.valueOf(seconds);
 
-            return padding(10, "| Timer (mm:ss) |  " + formattedMinutes + ":" + formattedSeconds, "-----------------------------".length()) + "|";
+        if((minutes != 0 || seconds!= 0) && flagCount > -1){
+            header =
+                    padding("", 50) + "--------------------------------------------------\n" +
+                    padding("", 50) + padding("| Time | ", 10) + formattedMinutes + ":" + formattedSeconds + "                                  |\n" +
+                    padding("", 50) + "--------------------------------------------------\n" +
+                    padding("", 50) + padding("| Flags | ", 10) + padding(String.valueOf(flagCount), 2) + "                                     |\n" +
+                    padding("", 50) + "--------------------------------------------------\n";
         }
 
-        return "";
+        return header;
     }
 
     private static void printResultLoser(String time, int moves ){
@@ -69,7 +73,24 @@ public final class BoardPrinter {
         System.out.println(result);
     }
 
-    public static void printBoard(String[][] board, int[] timer) {
+    public static void printBoard(String[][] board, int[] timer, int flagCount) {
+        //The separate line
+        String separateLine = "";
+        for (int i = 0; i < board[0].length; i++) {
+            if (i == (board[0].length - 1)) {
+                separateLine += "------";
+            } else {
+                separateLine += "---";
+            }
+        }
+
+        //Print the timer and flags count
+        if(!printHeader(timer,flagCount).equals("null")){
+            System.out.println(printHeader(timer, flagCount));
+            System.out.println(padding(50, separateLine, separateLine.length()));
+        }
+
+
         //Print the horizontal coordinates
         for (int i = 0; i < board[0].length; i++) {
             int index = i + 1;
@@ -82,27 +103,13 @@ public final class BoardPrinter {
             }
         }
 
-        //Print the separate line
-        String separateLine = "";
-        for (int i = 0; i < board[0].length; i++) {
-            if (i == (board[0].length - 1)) {
-                separateLine += "------";
-            } else {
-                separateLine += "---";
-            }
-        }
         System.out.println(padding(50, separateLine, separateLine.length()));
 
         //Print the board
         for (int i = 0; i < board.length; i++) {
             //Print the vertical coordinates with each row and the timer if needed
             int index = i + 1;
-            if(i < 3 && (timer[0] != 0 || timer[1] != 0)){
-                System.out.print(printTime(timer, i));
-                System.out.print(padding(10, String.valueOf(index), 2) + "| ");
-            }else{
-                System.out.print(padding(50, String.valueOf(index), 2) + "| ");
-            }
+            System.out.print(padding(50, String.valueOf(index), 2) + "| ");
 
             //Print the board itself
             for (int j = 0; j < board[i].length; j++) {

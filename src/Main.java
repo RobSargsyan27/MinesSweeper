@@ -27,14 +27,14 @@ public class Main {
             String[][] initialCloseBoard = ArrayInitializer.getInitialCloseBoard(difficultyType);
 
             //Print the initial close board
-            BoardPrinter.printBoard(initialCloseBoard, new int[2]);
-            BoardPrinter.printBoard(initialOpenBoard, new int[2]);
+            BoardPrinter.printBoard(initialCloseBoard, new int[2], -1);
+            BoardPrinter.printBoard(initialOpenBoard, new int[2], -1);
 
             //Start the actual game
             boolean isActive = true;
             boolean isFirstTurn = true;
             boolean toRestart = false;
-            int flagCount = 0;
+            int flagCount = 10;
             int moves = 0;
             String timeOnGame = "";
             String playerStatusAfterGame = "";
@@ -68,7 +68,7 @@ public class Main {
                 //Determine the current game timer
                 int[] timer = TimerUtil.getInterval(startTime, System.currentTimeMillis());
                 timeOnGame = timer[0] + ":" + timer[1];
-                BoardPrinter.printBoard(initialCloseBoard, timer);
+                BoardPrinter.printBoard(initialCloseBoard, timer, flagCount);
 
                 //Determine whether to continue the game
                 if(ArrayValidator.validateArray(initialCloseBoard, initialOpenBoard).equals("winner")
