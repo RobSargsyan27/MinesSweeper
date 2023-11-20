@@ -92,7 +92,7 @@ public class ValidatePromptUtil {
 
     public static boolean validateUserCoordinate(String[][] closeBoard , ArrayList<String> command, GameDifficulty difficultyType ){
         boolean isValid = true;
-        if(command.size() < 2) {
+        if(command.size() < 2 || command.size() == 2 && command.get(1).equals("flag")) {
             System.out.println("Invalid coordinate: Please enter valid number of arguments");
             command.clear();
             return false;
