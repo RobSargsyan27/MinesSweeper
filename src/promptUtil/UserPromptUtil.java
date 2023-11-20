@@ -1,6 +1,7 @@
 package promptUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import gameDifficulty.GameDifficulty;
@@ -30,12 +31,7 @@ public class UserPromptUtil {
                 break;
             case "custom":
                 System.out.print("Enter the width, height and mines number for the board: ");
-                int[] boardAttributes = new int[3];
-                for(int i = 0; i < 3; i++){
-                    boardAttributes[i] = scanner.nextInt();
-                }
-                difficultyType = ValidatePromptUtil.validateBoardAttributes(difficultyType, boardAttributes);
-                scanner.nextLine();
+                difficultyType = ValidatePromptUtil.validateBoardAttributes(difficultyType);
                 break;
         }
         return difficultyType;

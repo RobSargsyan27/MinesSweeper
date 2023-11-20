@@ -54,10 +54,6 @@ public class Main {
             //Determine the current game timer
             int[] timer = TimerUtil.getInterval(startTime, System.currentTimeMillis());
             BoardPrinter.printBoard(initialCloseBoard, timer);
-
-            if(!isActive){
-
-            }
         }
     }
 }

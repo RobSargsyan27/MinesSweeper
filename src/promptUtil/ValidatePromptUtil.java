@@ -13,6 +13,11 @@ public class ValidatePromptUtil {
         throw new AssertionError("Validation can not create an object");
     }
 
+    private static int validateAttribute(String input){
+        String[] formattedInput = input.split("\\D");
+        return formattedInput.length < 1 ? 0 : Integer.parseInt(formattedInput[0]);
+    }
+
     public static String validateDifficulty(String difficulty){
         while (!(difficulty.equals("beginner") ||
                 difficulty.equals("intermediate") ||
@@ -26,25 +31,40 @@ public class ValidatePromptUtil {
         return difficulty;
     }
 
-    public static GameDifficulty validateBoardAttributes(GameDifficulty difficultyType, int[] boardAttribute){
-        difficultyType.setWidth(boardAttribute[0]);
-        difficultyType.setHeight(boardAttribute[1]);
-        difficultyType.setMinesNumber(boardAttribute[2]);
+    public static GameDifficulty validateBoardAttributes(GameDifficulty difficultyType){
+        String[] inputArray = scanner.nextLine().split("\\D");
+        while(inputArray.length < 3){
+            System.out.print("Enter the valid number of attributes for the board: ");
+            inputArray = scanner.nextLine().split("\\D");
+        }
+
+        difficultyType.setWidth(Integer.parseInt(inputArray[0]));
+        difficultyType.setHeight(Integer.parseInt(inputArray[1]));
+        difficultyType.setMinesNumber(Integer.parseInt(inputArray[2]));
 
         while (difficultyType.getWidth() == 0) {
             System.out.print("Invalid width: Enter a width between 1 and 40: ");
-            difficultyType.setWidth(scanner.nextInt());
-            scanner.nextLine();
+            int formattedInput = validateAttribute(scanner.nextLine());
+            if(formattedInput != 0){
+                difficultyType.setWidth(formattedInput);
+            }
         }
         while (difficultyType.getHeight() == 0) {
             System.out.print("Invalid height: Enter a height between 1 and 50: ");
-            difficultyType.setHeight(scanner.nextInt());
-            scanner.nextLine();
+            int formattedInput = validateAttribute(scanner.nextLine());
+            difficultyType.setHeight(formattedInput);
+            if(formattedInput != 0){
+                difficultyType.setHeight(formattedInput);
+            }
+
         }
         while (difficultyType.getMinesNumber() == 0 || difficultyType.getMinesNumber() > (difficultyType.getHeight() * difficultyType.getWidth() / 3)) {
             System.out.print("Invalid mines number: Enter a mines number between 1 and " + (difficultyType.getHeight() * difficultyType.getWidth() / 3) + ": ");
-            difficultyType.setMinesNumber(scanner.nextInt());
-            scanner.nextLine();
+            int formattedInput = validateAttribute(scanner.nextLine());
+            difficultyType.setMinesNumber(formattedInput);
+            if(formattedInput != 0){
+                difficultyType.setHeight(formattedInput);
+            }
         }
 
         return difficultyType;
