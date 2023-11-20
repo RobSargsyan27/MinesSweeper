@@ -2,13 +2,15 @@ package promptUtil;
 
 import gameDifficulty.GameDifficulty;
 
+import javax.naming.InsufficientResourcesException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class ValidatePromptUtil {
     static Scanner scanner = new Scanner(System.in);
-    static Pattern VALID_NUMBER = Pattern.compile("\\d");
+    static Pattern VALID_NUMBER = Pattern.compile("\\d\\d");
     private ValidatePromptUtil() {
         throw new AssertionError("Validation can not create an object");
     }
@@ -16,6 +18,19 @@ public class ValidatePromptUtil {
     private static int validateAttribute(String input){
         String[] formattedInput = input.split("\\D");
         return formattedInput.length < 1 ? 0 : Integer.parseInt(formattedInput[0]);
+    }
+
+    private static String[] validateAttributes(String input){
+        ArrayList<String> inputArray = new ArrayList<>(Arrays.asList(input.split("\\D")));
+        ArrayList<String> sanitizedArray = new ArrayList<>();
+        System.out.println(inputArray);
+        for(int i = 0; i < inputArray.size(); i++){
+            if(VALID_NUMBER.matcher(inputArray.get(i)).matches()){
+                sanitizedArray.add(inputArray.get(i));
+            }
+        }
+        System.out.println(sanitizedArray);
+        return sanitizedArray.toArray(new String[0]);
     }
 
     public static String validateDifficulty(String difficulty){
@@ -32,10 +47,11 @@ public class ValidatePromptUtil {
     }
 
     public static GameDifficulty validateBoardAttributes(GameDifficulty difficultyType){
-        String[] inputArray = scanner.nextLine().split("\\D");
+        String[] inputArray = validateAttributes(scanner.nextLine());
+
         while(inputArray.length < 3){
             System.out.print("Enter the valid number of attributes for the board: ");
-            inputArray = scanner.nextLine().split("\\D");
+            inputArray = validateAttributes(scanner.nextLine());
         }
 
         difficultyType.setWidth(Integer.parseInt(inputArray[0]));
