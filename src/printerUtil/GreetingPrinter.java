@@ -5,7 +5,7 @@ public class GreetingPrinter {
         throw new AssertionError("Can not create a utility object");
     }
 
-    private static void printLogo() {
+    public static void printLogo() {
         String intro = "__        __   _                             _           __  __ _                                                   \n" +
                 "\\ \\      / /__| | ___ ___  _ __ ___   ___   | |_ ___    |  \\/  (_)_ __   ___  _____      _____  ___ _ __   ___ _ __ \n" +
                 " \\ \\ /\\ / / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\  | __/ _ \\   | |\\/| | | '_ \\ / _ \\/ __\\ \\ /\\ / / _ \\/ _ \\ '_ \\ / _ \\ '__|\n" +
