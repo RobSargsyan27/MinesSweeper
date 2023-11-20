@@ -1,0 +1,80 @@
+package promptUtil;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.regex.Pattern;
+import gameDifficulty.GameDifficulty;
+
+public class UserPromptUtil {
+    static Scanner scanner = new Scanner(System.in);
+
+    private UserPromptUtil() {
+        throw new AssertionError("Utility can not create an object");
+    }
+
+    public static GameDifficulty promptBoardValues() {
+        GameDifficulty difficultyType = new GameDifficulty();
+
+        System.out.print("Enter the difficulty of the game: ");
+        String difficulty = ValidatePromptUtil.validateDifficulty(scanner.nextLine().toLowerCase().trim());
+
+        switch (difficulty) {
+            case "beginner":
+                difficultyType = new GameDifficulty(9, 9, 10);
+                break;
+            case "intermediate":
+                difficultyType = new GameDifficulty(16, 16, 40);
+                break;
+            case "expert":
+                difficultyType = new GameDifficulty(30, 16, 99);
+                break;
+            case "custom":
+                System.out.print("Enter the width, height and mines number for the board: ");
+                difficultyType = ValidatePromptUtil.validateBoardAttributes(difficultyType, scanner.nextInt(), scanner.nextInt(), scanner.nextInt());
+                break;
+        }
+        return difficultyType;
+    }
+
+    public static String[] promptActionValues(String[][] closedBoard, GameDifficulty difficultyType) {
+        boolean isValid = false;
+        ArrayList<String> sanitizedInput = new ArrayList<>();
+
+        while(!isValid){
+            //Prompt the user for the input
+            System.out.print("Enter the coordinate for the cell (x y): ");
+            String input = scanner.nextLine().trim();
+
+            //Check if the user wants to quit or restart the game
+            if(input.equals("q")){
+                return new String[]{"quit"};
+            }else if(input.equals("r")){
+                return new String[]{"restart"};
+            }
+
+            //Sanitize the coordinate and check if the user wants to put a flag
+            String[] inputSplit = input.split("\\D");
+            boolean hasFlag = input.endsWith("-f");
+            final Pattern VALID_NUMBER = Pattern.compile("\\d+");
+
+            for(int i = 0; i < inputSplit.length; i++){
+                if(VALID_NUMBER.matcher(inputSplit[i]).matches() && sanitizedInput.size() < 2){
+                    int zeroIndexValue = Integer.parseInt(inputSplit[i]) - 1;
+                    sanitizedInput.add(String.valueOf(zeroIndexValue));
+                }
+            }
+
+            //Add third value in an array if the user want to put flag
+            if(hasFlag){
+                sanitizedInput.add("flag");
+            }
+
+            //Validate the given coordinates according to the board width and height
+            //Validate the flag option for the given cell
+            isValid = ValidatePromptUtil.validateUserCoordinate(closedBoard, sanitizedInput, difficultyType)
+                    && ValidatePromptUtil.validateFlagOption(closedBoard, sanitizedInput);
+
+        }
+        return sanitizedInput.toArray(new String[0]);
+    }
+}
