@@ -55,6 +55,7 @@ public class ArrayChecker {
         //Evaluate the function for command with flag option
         if(hasFlag){
             closeBoard[row][column] = closeBoard[row][column].equals("#") ? "F" : "#";
+            return;
         }
 
         //Evaluate the function for command without flag option
@@ -66,8 +67,6 @@ public class ArrayChecker {
         }else{
             cellValue = "empty";
         }
-
-        System.out.println("Command: " + Arrays.toString(command));
 
         switch (cellValue){
             case "number":
