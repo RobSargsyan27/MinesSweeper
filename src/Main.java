@@ -74,13 +74,13 @@ public class Main {
         }
 
         GreetingPrinter.printBoarder();
+        String time = timer[0] + ":" + timer[1];
         if(playerStatusAfterGame.equals("loser")){
             GreetingPrinter.printLoser();
-            String time = timer[0] + ":" + timer[1];
             BoardPrinter.printResultLoser(time,moves);
         }else if (playerStatusAfterGame.equals("winner")){
             GreetingPrinter.printWinner();
-
+            BoardPrinter.printResultWinner(time, moves);
         }
 
 
