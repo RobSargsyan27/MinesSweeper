@@ -26,24 +26,25 @@ public class ValidatePromptUtil {
         return difficulty;
     }
 
-    public static GameDifficulty validateBoardAttributes(GameDifficulty difficultyType, int userWidth, int userHeight, int userMinesNumber ){
-        difficultyType.setWidth(userWidth);
-        difficultyType.setHeight(userHeight);
-        difficultyType.setMinesNumber(userMinesNumber);
-        scanner.nextLine();
+    public static GameDifficulty validateBoardAttributes(GameDifficulty difficultyType, int[] boardAttribute){
+        difficultyType.setWidth(boardAttribute[0]);
+        difficultyType.setHeight(boardAttribute[1]);
+        difficultyType.setMinesNumber(boardAttribute[2]);
 
         while (difficultyType.getWidth() == 0) {
             System.out.print("Invalid width: Enter a width between 1 and 40: ");
             difficultyType.setWidth(scanner.nextInt());
+            scanner.nextLine();
         }
         while (difficultyType.getHeight() == 0) {
             System.out.print("Invalid height: Enter a height between 1 and 50: ");
             difficultyType.setHeight(scanner.nextInt());
+            scanner.nextLine();
         }
-
         while (difficultyType.getMinesNumber() == 0 || difficultyType.getMinesNumber() > (difficultyType.getHeight() * difficultyType.getWidth() / 3)) {
             System.out.print("Invalid mines number: Enter a mines number between 1 and " + (difficultyType.getHeight() * difficultyType.getWidth() / 3) + ": ");
             difficultyType.setMinesNumber(scanner.nextInt());
+            scanner.nextLine();
         }
 
         return difficultyType;

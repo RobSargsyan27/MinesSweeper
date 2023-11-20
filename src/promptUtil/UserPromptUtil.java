@@ -30,7 +30,12 @@ public class UserPromptUtil {
                 break;
             case "custom":
                 System.out.print("Enter the width, height and mines number for the board: ");
-                difficultyType = ValidatePromptUtil.validateBoardAttributes(difficultyType, scanner.nextInt(), scanner.nextInt(), scanner.nextInt());
+                int[] boardAttributes = new int[3];
+                for(int i = 0; i < 3; i++){
+                    boardAttributes[i] = scanner.nextInt();
+                }
+                difficultyType = ValidatePromptUtil.validateBoardAttributes(difficultyType, boardAttributes);
+                scanner.nextLine();
                 break;
         }
         return difficultyType;
