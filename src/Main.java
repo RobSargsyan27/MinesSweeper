@@ -33,12 +33,17 @@ public class Main {
         boolean toRestart = false;
         boolean isFirstTurn = true;
         int flagCount = 0;
-        String playerStatusAfterGame;
+        int[] timer = new int[2];
+        int moves = 0;
+        String playerStatusAfterGame = "";
 
         //Get the current time for timer
         long startTime = System.currentTimeMillis();
 
         while (isActive) {
+            //Count the total moves
+            moves++;
+
             //Get the valid command from the user
             String[] command = UserPromptUtil.promptActionValues(initialCloseBoard,difficultyType);
 
@@ -57,7 +62,7 @@ public class Main {
             }
 
             //Determine the current game timer
-            int[] timer = TimerUtil.getInterval(startTime, System.currentTimeMillis());
+            timer = TimerUtil.getInterval(startTime, System.currentTimeMillis());
             BoardPrinter.printBoard(initialCloseBoard, timer);
 
             //Determine whether to continue the game
@@ -66,6 +71,15 @@ public class Main {
                 isActive = false;
                 playerStatusAfterGame = ArrayValidator.validateArray(initialCloseBoard, initialOpenBoard);
             }
+        }
+
+        GreetingPrinter.printBoarder();
+        if(playerStatusAfterGame.equals("loser")){
+            GreetingPrinter.printLoser();
+            String time = timer[0] + ":" + timer[1];
+            BoardPrinter.printResultLoser(time,moves);
+        }else if (playerStatusAfterGame.equals("winner")){
+            GreetingPrinter.printWinner();
         }
 
 

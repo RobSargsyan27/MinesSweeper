@@ -5,7 +5,7 @@ public final class BoardPrinter {
         throw new AssertionError("Utility can not create an object");
     }
 
-    private static String padding(String word, int length){
+    public static String padding(String word, int length){
         String formattedString = word;
 
         for(int i = 0; i < (length - word.length()); i++){
@@ -90,5 +90,14 @@ public final class BoardPrinter {
                 }
             }
         }
+    }
+
+    public static void printResultLoser(String time, int moves ){
+        String result =
+                padding("", 50) + "------------------------------------------------------------\n" +
+                padding("", 50) + "| " + padding(time, 26) + " |\n" +
+                padding("", 50) + "------------------------------------------------------------\n" +
+                padding("", 50) + "| " + padding(String.valueOf(moves), 26) + " |\n" +
+                padding("", 50) + "------------------------------------------------------------\n";
     }
 }
