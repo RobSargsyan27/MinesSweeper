@@ -99,5 +99,18 @@ public final class BoardPrinter {
                 padding("", 50) + "------------------------------------------------------------\n" +
                 padding("", 50) + "| " + padding(String.valueOf(moves), 26) + " |\n" +
                 padding("", 50) + "------------------------------------------------------------\n";
+
+        System.out.println(result);
+    }
+
+    public static void printResultWinner(String time, int moves ){
+        String result =
+                padding("", 20) + "------------------------------------------------------------\n" +
+                        padding("", 20) + "| " + padding(time, 26) + " |\n" +
+                        padding("", 20) + "------------------------------------------------------------\n" +
+                        padding("", 20) + "| " + padding(String.valueOf(moves), 26) + " |\n" +
+                        padding("", 20) + "------------------------------------------------------------\n";
+
+        System.out.println(result);
     }
 }

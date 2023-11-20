@@ -80,6 +80,7 @@ public class Main {
             BoardPrinter.printResultLoser(time,moves);
         }else if (playerStatusAfterGame.equals("winner")){
             GreetingPrinter.printWinner();
+
         }
 
 
