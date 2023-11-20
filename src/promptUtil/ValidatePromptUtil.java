@@ -50,7 +50,7 @@ public class ValidatePromptUtil {
         String[] inputArray = validateAttributes(scanner.nextLine());
 
         while(inputArray.length < 3){
-            System.out.print("Enter the valid number of attributes for the boardTEST: ");
+            System.out.print("Enter the valid number of attributes for the board: ");
             inputArray = validateAttributes(scanner.nextLine());
         }
 
