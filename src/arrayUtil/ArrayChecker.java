@@ -25,27 +25,36 @@ public class ArrayChecker {
         return bombsCoordinates.toArray(new int[1][2]);
     }
 
-    private static void openEmptyCells(String[][] closeBoard, String[][] openBoard, String[] command){
+    private static void openEmptyCells(String[][] closeBoard, String[][] openBoard, String[] command) {
         int column = Integer.parseInt(command[0]);
         int row = Integer.parseInt(command[1]);
 
-        closeBoard[row][column] = "0";
+        // Stop the recursion if the cell is already open or out of bounds
+        if (!isCellValidAndClosed(row, column, closeBoard, openBoard)) {
+            return;
+        }
 
-        for(int i = (row - 1); i < (row + 2); i++){
-            if(i > -1 && i < openBoard.length){
-               for(int j = (column - 1); j < (column + 2); j++){
-                   if(j > -1 && j < openBoard[i].length){
-                       if(VALID_NUMBER.matcher(openBoard[i][j]).matches() && closeBoard[i][j].equals("#")){
-                           String cellValue = openBoard[i][j];
-                           closeBoard[i][j] = cellValue;
-                       }else if(openBoard[i][j].equals("0") && closeBoard[i][j].equals("#")){
-                           String[] recursiveCommand = new String[]{String.valueOf(j), String.valueOf(i)};
-                           openEmptyCells(closeBoard, openBoard, recursiveCommand );
-                       }
-                   }
-               }
+        // Open the current cell
+        closeBoard[row][column] = openBoard[row][column];
+
+        // Recursively open adjacent cells if the current cell is empty
+        if (openBoard[row][column].equals("0")) {
+            for (int i = row - 1; i <= row + 1; i++) {
+                for (int j = column - 1; j <= column + 1; j++) {
+                    // Recursive call for adjacent cells
+                    if (isCellValidAndClosed(i, j, closeBoard, openBoard)) {
+                        openEmptyCells(closeBoard, openBoard, new String[]{String.valueOf(j), String.valueOf(i)});
+                    }
+                }
             }
         }
+    }
+
+    // Check if a cell is valid and closed
+    private static boolean isCellValidAndClosed(int row, int column, String[][] closeBoard, String[][] openBoard) {
+        return row >= 0 && row < openBoard.length &&
+                column >= 0 && column < openBoard[row].length &&
+                closeBoard[row][column].equals("#");
     }
     public static void checkCoordinate(String[][] closeBoard, String[][] openBoard, String[] command){
         int column = Integer.parseInt(command[0]);
