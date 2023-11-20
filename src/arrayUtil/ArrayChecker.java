@@ -2,6 +2,7 @@ package arrayUtil;
 
 import gameDifficulty.GameDifficulty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public class ArrayChecker {
@@ -51,7 +52,6 @@ public class ArrayChecker {
         int row = Integer.parseInt(command[1]);
         boolean hasFlag = command.length == 3;
 
-
         //Evaluate the function for command with flag option
         if(hasFlag){
             closeBoard[row][column] = closeBoard[row][column].equals("#") ? "F" : "#";
@@ -67,18 +67,23 @@ public class ArrayChecker {
             cellValue = "empty";
         }
 
+        System.out.println("Command: " + Arrays.toString(command));
+
         switch (cellValue){
             case "number":
                 String numberInCell = openBoard[row][column];
                 closeBoard[row][column] = numberInCell;
+                break;
             case "bomb":
                 int[][] bombsCoordinates = getBombCoordinates(openBoard);
                 for(int i = 0; i < bombsCoordinates.length; i++){
                     int[] bombCoordinate = bombsCoordinates[i];
                     closeBoard[bombCoordinate[0]][bombCoordinate[1]] = "X";
                 }
+                break;
             case "empty":
                 openEmptyCells(closeBoard, openBoard, command);
+                break;
         }
     }
 

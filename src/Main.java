@@ -6,6 +6,8 @@ import gameDifficulty.GameDifficulty;
 import promptUtil.UserPromptUtil;
 import timerUtil.TimerUtil;
 
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
         //Print the Greeting and Rules of the game
@@ -30,6 +32,7 @@ public class Main {
         boolean toRestart = false;
         boolean isFirstTurn = true;
         int flagCount = 0;
+
         //Get the current time for timer
         long startTime = System.currentTimeMillis();
 
