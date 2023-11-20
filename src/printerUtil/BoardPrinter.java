@@ -46,6 +46,29 @@ public final class BoardPrinter {
 
         return "";
     }
+
+    private static void printResultLoser(String time, int moves ){
+        String result =
+                padding("", 50) + "------------------------------------------------------------\n" +
+                        padding("", 50) + "| " + padding(time, 56) + " |\n" +
+                        padding("", 50) + "------------------------------------------------------------\n" +
+                        padding("", 50) + "| " + padding(String.valueOf(moves), 56) + " |\n" +
+                        padding("", 50) + "------------------------------------------------------------\n";
+
+        System.out.println(result);
+    }
+
+    private static void printResultWinner(String time, int moves ){
+        String result =
+                padding("", 20) + "------------------------------------------------------------\n" +
+                        padding("", 20) + "| Timer: " + padding(time, 50 ) + "|\n" +
+                        padding("", 20) + "------------------------------------------------------------\n" +
+                        padding("", 20) + "| Moves: " + padding(String.valueOf(moves), 50) + "|\n" +
+                        padding("", 20) + "------------------------------------------------------------\n";
+
+        System.out.println(result);
+    }
+
     public static void printBoard(String[][] board, int[] timer) {
         //Print the horizontal coordinates
         for (int i = 0; i < board[0].length; i++) {
@@ -74,7 +97,7 @@ public final class BoardPrinter {
         for (int i = 0; i < board.length; i++) {
             //Print the vertical coordinates with each row and the timer if needed
             int index = i + 1;
-            if(i > 5 && i < 9 && (timer[0] != 0 || timer[1] != 0)){
+            if(i > 0 && i < 5 && (timer[0] != 0 || timer[1] != 0)){
                 System.out.print(printTime(timer, i - 5));
                 System.out.print(padding(10, String.valueOf(index), 2) + "| ");
             }else{
@@ -92,25 +115,14 @@ public final class BoardPrinter {
         }
     }
 
-    public static void printResultLoser(String time, int moves ){
-        String result =
-                padding("", 50) + "------------------------------------------------------------\n" +
-                padding("", 50) + "| " + padding(time, 26) + " |\n" +
-                padding("", 50) + "------------------------------------------------------------\n" +
-                padding("", 50) + "| " + padding(String.valueOf(moves), 26) + " |\n" +
-                padding("", 50) + "------------------------------------------------------------\n";
-
-        System.out.println(result);
-    }
-
-    public static void printResultWinner(String time, int moves ){
-        String result =
-                padding("", 20) + "------------------------------------------------------------\n" +
-                        padding("", 20) + "| " + padding(time, 26) + " |\n" +
-                        padding("", 20) + "------------------------------------------------------------\n" +
-                        padding("", 20) + "| " + padding(String.valueOf(moves), 26) + " |\n" +
-                        padding("", 20) + "------------------------------------------------------------\n";
-
-        System.out.println(result);
+    public static void printResult(String timeOnGame, int moves, String playerStatusAfterGame){
+        GreetingPrinter.printBoarder();
+        if(playerStatusAfterGame.equals("loser")){
+            GreetingPrinter.printLoser();
+            BoardPrinter.printResultLoser(timeOnGame,moves);
+        }else if (playerStatusAfterGame.equals("winner")){
+            GreetingPrinter.printWinner();
+            BoardPrinter.printResultWinner(timeOnGame, moves);
+        }
     }
 }
