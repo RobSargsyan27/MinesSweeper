@@ -35,9 +35,9 @@ public final class BoardPrinter {
         int minutes = timer[0];
         int seconds = timer[1];
 
-        if(line == 1 || line == 3){
+        if(line == 0 || line == 2){
             return padding(10, "------------------------------", "------------------------------".length());
-        }else if(line == 2){
+        }else if(line == 1){
             String formattedMinutes = minutes < 10 ? "0" + minutes : String.valueOf(minutes);
             String formattedSeconds = seconds < 10 ? "0" + seconds : String.valueOf(seconds);
 
@@ -97,8 +97,8 @@ public final class BoardPrinter {
         for (int i = 0; i < board.length; i++) {
             //Print the vertical coordinates with each row and the timer if needed
             int index = i + 1;
-            if(i > 0 && i < 5 && (timer[0] != 0 || timer[1] != 0)){
-                System.out.print(printTime(timer, i - 5));
+            if(i < 3 && (timer[0] != 0 || timer[1] != 0)){
+                System.out.print(printTime(timer, i));
                 System.out.print(padding(10, String.valueOf(index), 2) + "| ");
             }else{
                 System.out.print(padding(50, String.valueOf(index), 2) + "| ");

@@ -63,7 +63,6 @@ public class Main {
 
             //Determine the current game timer
             int[] timer = TimerUtil.getInterval(startTime, System.currentTimeMillis());
-            System.out.println(Arrays.toString(timer));
             timeOnGame = timer[0] + ":" + timer[1];
             BoardPrinter.printBoard(initialCloseBoard, timer);
 
@@ -78,6 +77,7 @@ public class Main {
         //Print the result
         BoardPrinter.printResult(timeOnGame, moves, playerStatusAfterGame);
 
+        //Prompt the user for another game
 
     }
 }
