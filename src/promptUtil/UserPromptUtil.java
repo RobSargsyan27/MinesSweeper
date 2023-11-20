@@ -78,4 +78,18 @@ public class UserPromptUtil {
         }
         return sanitizedInput.toArray(new String[0]);
     }
+
+    public static boolean promptContinueGame(){
+        System.out.print("Do you want to play again? ");
+        String input = scanner.nextLine();
+        String command = ValidatePromptUtil.validateContinueGame(input);
+
+        while(command.equals("null")){
+            System.out.print("Invalid input: Please answer either yes or no: ");
+            input = scanner.nextLine();
+            command = ValidatePromptUtil.validateContinueGame(input);
+        }
+
+        return command.equals("yes");
+    }
 }

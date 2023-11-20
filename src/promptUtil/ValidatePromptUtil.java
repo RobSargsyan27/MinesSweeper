@@ -140,4 +140,13 @@ public class ValidatePromptUtil {
     }
 
 
+    public static String validateContinueGame(String input){
+        if(input.equalsIgnoreCase("yes") || input.equalsIgnoreCase("y")){
+            return "yes";
+        }else if (input.equalsIgnoreCase("no") || input.equalsIgnoreCase("n")){
+            return "no";
+        }
+
+        return "null";
+    }
 }
