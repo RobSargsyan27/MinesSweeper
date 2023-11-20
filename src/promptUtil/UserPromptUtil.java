@@ -70,8 +70,6 @@ public class UserPromptUtil {
                 sanitizedInput.add("flag");
             }
 
-            System.out.print("Sanitized" + sanitizedInput);
-
             //Validate the given coordinates according to the board width and height
             //Validate the flag option for the given cell
             isValid = ValidatePromptUtil.validateUserCoordinate(closedBoard, sanitizedInput, difficultyType)
