@@ -53,11 +53,11 @@ public final class BoardPrinter {
 
     private static void printResultLoser(String time, int moves ){
         String result =
-                padding("", 50) + "------------------------------------------------------------\n" +
-                        padding("", 50) + "| " + padding(time, 56) + " |\n" +
-                        padding("", 50) + "------------------------------------------------------------\n" +
-                        padding("", 50) + "| " + padding(String.valueOf(moves), 56) + " |\n" +
-                        padding("", 50) + "------------------------------------------------------------\n";
+                padding("", 20) + "------------------------------------------------------------\n" +
+                        padding("", 20) + "| Timer: " + padding(time, 50 ) + "|\n" +
+                        padding("", 20) + "------------------------------------------------------------\n" +
+                        padding("", 20) + "| Moves: " + padding(String.valueOf(moves), 50) + "|\n" +
+                        padding("", 20) + "------------------------------------------------------------\n";
 
         System.out.println(result);
     }
