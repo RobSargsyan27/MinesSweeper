@@ -50,14 +50,23 @@ public class ArrayChecker {
                 column >= 0 && column < closeBoard[row].length &&
                 closeBoard[row][column].equals("#");
     }
-    public static void checkCoordinate(String[][] closeBoard, String[][] openBoard, String[] command){
+    public static void checkCoordinate(String[][] closeBoard, String[][] openBoard, String[] command, int[] metaData){
         int column = Integer.parseInt(command[0]);
         int row = Integer.parseInt(command[1]);
         boolean hasFlag = command.length == 3;
 
         //Evaluate the function for command with flag option
         if(hasFlag){
-            closeBoard[row][column] = closeBoard[row][column].equals("#") ? "F" : "#";
+            boolean isFlagged = closeBoard[row][column].equals("F");
+
+            if(isFlagged){
+                closeBoard[row][column] = "#";
+                metaData[1]++;
+            }else{
+                closeBoard[row][column] = "F";
+                metaData[1]--;
+            }
+
             return;
         }
 

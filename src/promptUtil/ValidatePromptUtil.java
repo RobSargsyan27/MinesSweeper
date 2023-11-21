@@ -122,7 +122,7 @@ public class ValidatePromptUtil {
         return isValid;
     }
 
-    public static boolean validateFlagOption(String[][] closeBoard, ArrayList<String> command){
+    public static boolean validateFlagOption(String[][] closeBoard, ArrayList<String> command, int flagCount){
         boolean isValid = true;
 
         if(command.size() == 3){
@@ -131,6 +131,10 @@ public class ValidatePromptUtil {
 
             if(VALID_NUMBER.matcher(closeBoard[row][column]).matches()){
                 System.out.println("Invalid flag option: You can not put a flag on revealed cells!");
+                command.clear();
+                isValid = false;
+            }else if(closeBoard[row][column].equals("#") && flagCount < 1){
+                System.out.println("Invalid flag option: No flags left to put. Remove flags in order to put somewhere else!");
                 command.clear();
                 isValid = false;
             }

@@ -38,7 +38,7 @@ public class UserPromptUtil {
         return difficultyType;
     }
 
-    public static String[] promptActionValues(String[][] closedBoard, GameDifficulty difficultyType) {
+    public static String[] promptActionValues(String[][] closedBoard, GameDifficulty difficultyType, int flagCount) {
         boolean isValid = false;
         ArrayList<String> sanitizedInput = new ArrayList<>();
 
@@ -73,7 +73,7 @@ public class UserPromptUtil {
             //Validate the given coordinates according to the board width and height
             //Validate the flag option for the given cell
             isValid = ValidatePromptUtil.validateUserCoordinate(closedBoard, sanitizedInput, difficultyType)
-                    && ValidatePromptUtil.validateFlagOption(closedBoard, sanitizedInput);
+                    && ValidatePromptUtil.validateFlagOption(closedBoard, sanitizedInput, flagCount);
 
         }
         return sanitizedInput.toArray(new String[0]);

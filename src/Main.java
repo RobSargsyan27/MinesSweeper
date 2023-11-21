@@ -34,8 +34,7 @@ public class Main {
             boolean isActive = true;
             boolean isFirstTurn = true;
             boolean toRestart = false;
-            int flagCount = 10;
-            int moves = 0;
+            int[] metaData = new int[]{0, difficultyType.getMinesNumber()};
             String timeOnGame = "";
             String playerStatusAfterGame = "";
 
@@ -44,10 +43,10 @@ public class Main {
 
             while (isActive) {
                 //Count the total moves
-                moves++;
+                metaData[0]++;
 
                 //Get the valid command from the user
-                String[] command = UserPromptUtil.promptActionValues(initialCloseBoard,difficultyType);
+                String[] command = UserPromptUtil.promptActionValues(initialCloseBoard, difficultyType, metaData[1]);
 
                 //Evaluate the given command
                 if(command[0].equals("quit")){
@@ -62,13 +61,13 @@ public class Main {
                     }
                     isFirstTurn = false;
 
-                    ArrayChecker.checkCoordinate(initialCloseBoard, initialOpenBoard, command);
+                    ArrayChecker.checkCoordinate(initialCloseBoard, initialOpenBoard, command, metaData);
                 }
 
                 //Determine the current game timer
                 int[] timer = TimerUtil.getInterval(startTime, System.currentTimeMillis());
                 timeOnGame = timer[0] + ":" + timer[1];
-                BoardPrinter.printBoard(initialCloseBoard, timer, flagCount);
+                BoardPrinter.printBoard(initialCloseBoard, timer, metaData[1]);
 
                 //Determine whether to continue the game
                 if(ArrayValidator.validateArray(initialCloseBoard, initialOpenBoard).equals("winner")
@@ -80,7 +79,7 @@ public class Main {
 
             if(toPlay && !toRestart){
                 //Print the result
-                BoardPrinter.printResult(timeOnGame, moves, playerStatusAfterGame);
+                BoardPrinter.printResult(timeOnGame, metaData[0], playerStatusAfterGame);
 
                 //Prompt the user for another game
                 toPlay = UserPromptUtil.promptContinueGame();
