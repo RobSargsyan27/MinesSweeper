@@ -7,16 +7,15 @@ public class ArrayValidator {
     }
 
     private static boolean checkWinner(String[][] closedBoard, String[][] openBoard){
-        int hiddenCell = 0;
         for(int i = 0; i < closedBoard.length; i++){
             for (int j = 0; j < closedBoard[i].length; j++){
-                if(closedBoard[i][j].equals("#") && !openBoard[i][j].equals("X")){
-                    hiddenCell++;
+                if((closedBoard[i][j].equals("#") || closedBoard[i][j].equals("F"))  && !openBoard[i][j].equals("X")){
+                    return false;
                 }
             }
         }
 
-        return hiddenCell == 0;
+        return true;
     }
 
     private static boolean checkLoser(String[][] closedBoard){
