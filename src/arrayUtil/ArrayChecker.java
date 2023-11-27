@@ -4,11 +4,9 @@ import gameDifficulty.GameDifficulty;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-public class ArrayChecker {
+public abstract class ArrayChecker {
     static Pattern VALID_NUMBER = Pattern.compile("[1-8]");
-    private ArrayChecker(){
-        throw new AssertionError("The Array Initializer can not have an instance.");
-    }
+    private ArrayChecker(){}
 
     private static int[][] getBombCoordinates(String[][] openBoard){
         ArrayList<int[]> bombsCoordinates = new ArrayList<>();

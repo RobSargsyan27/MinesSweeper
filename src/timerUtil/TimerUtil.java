@@ -1,9 +1,7 @@
 package timerUtil;
 
-public class TimerUtil {
-    private TimerUtil() {
-        throw new AssertionError("Utility can not create an object");
-    }
+public abstract class TimerUtil {
+    private TimerUtil() {}
 
     public static int[] getInterval(long startTime, long endTime){
         int gameInterval =(int) (endTime - startTime) / 1000;
@@ -12,5 +10,4 @@ public class TimerUtil {
 
         return new int[]{minutes, seconds};
     }
-
 }

@@ -1,9 +1,7 @@
 package printerUtil;
 
-public class GreetingPrinter {
-    private GreetingPrinter() {
-        throw new AssertionError("Can not create a utility object");
-    }
+public abstract class GreetingPrinter {
+    private GreetingPrinter() {}
 
     public static void printLogo() {
         String intro = "__        __   _                             _           __  __ _                                                   \n" +

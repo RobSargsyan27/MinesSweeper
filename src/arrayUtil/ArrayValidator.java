@@ -1,10 +1,8 @@
 package arrayUtil;
 
-public class ArrayValidator {
+public abstract class ArrayValidator {
 
-    private ArrayValidator() {
-        throw new AssertionError("The Array Initializer can not have an instance.");
-    }
+    private ArrayValidator() {}
 
     private static boolean checkWinner(String[][] closedBoard, String[][] openBoard){
         for(int i = 0; i < closedBoard.length; i++){

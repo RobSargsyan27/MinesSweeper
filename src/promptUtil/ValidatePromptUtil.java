@@ -8,12 +8,10 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class ValidatePromptUtil {
+public abstract class ValidatePromptUtil {
     static Scanner scanner = new Scanner(System.in);
     static Pattern VALID_NUMBER = Pattern.compile("\\d+");
-    private ValidatePromptUtil() {
-        throw new AssertionError("Validation can not create an object");
-    }
+    private ValidatePromptUtil() {}
 
     private static int validateAttribute(String input){
         ArrayList<String> inputArray = new ArrayList<>(Arrays.asList(input.split("\\D")));
@@ -52,7 +50,6 @@ public class ValidatePromptUtil {
 
     public static GameDifficulty validateBoardAttributes(GameDifficulty difficultyType){
         String[] inputArray = validateAttributes(scanner.nextLine());
-
 
         while(inputArray.length < 3){
             System.out.print("Enter the valid number of attributes for the board: ");

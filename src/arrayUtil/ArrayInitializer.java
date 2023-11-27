@@ -4,10 +4,8 @@ import java.util.Arrays;
 
 import gameDifficulty.GameDifficulty;
 
-public class ArrayInitializer {
-    private ArrayInitializer() {
-        throw new AssertionError("The Array Initializer can not have an instance.");
-    }
+public abstract class ArrayInitializer {
+    private ArrayInitializer() {}
 
     private static String[][] initBoard(GameDifficulty difficultyType, String type) {
         int width = difficultyType.getWidth();

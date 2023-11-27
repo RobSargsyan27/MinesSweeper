@@ -1,9 +1,7 @@
 package printerUtil;
 
-public final class BoardPrinter {
-    private BoardPrinter(){
-        throw new AssertionError("Utility can not create an object");
-    }
+public abstract class BoardPrinter {
+    private BoardPrinter(){}
 
     public static String padding(String word, int length){
         String formattedString = word;
