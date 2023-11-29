@@ -1,6 +1,6 @@
-package promptUtil;
+package Utilities.promptUtil;
 
-import gameDifficulty.GameDifficulty;
+import GameDifficulty.GameDifficulty;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -14,9 +14,9 @@ public abstract class ValidatePromptUtil {
     private static int validateAttribute(String input){
         ArrayList<String> inputArray = new ArrayList<>(Arrays.asList(input.split("\\D")));
         ArrayList<String> sanitizedArray = new ArrayList<>();
-        for(int i = 0; i < inputArray.size(); i++){
-            if(VALID_NUMBER.matcher(inputArray.get(i)).matches()){
-                sanitizedArray.add(inputArray.get(i));
+        for (String string : inputArray) {
+            if (VALID_NUMBER.matcher(string).matches()) {
+                sanitizedArray.add(string);
             }
         }
         return sanitizedArray.isEmpty() ? 0 : Integer.parseInt(sanitizedArray.get(0));
@@ -25,9 +25,9 @@ public abstract class ValidatePromptUtil {
     private static String[] validateAttributes(String input){
         ArrayList<String> inputArray = new ArrayList<>(Arrays.asList(input.split("\\D")));
         ArrayList<String> sanitizedArray = new ArrayList<>();
-        for(int i = 0; i < inputArray.size(); i++){
-            if(VALID_NUMBER.matcher(inputArray.get(i)).matches()){
-                sanitizedArray.add(inputArray.get(i));
+        for (String string : inputArray) {
+            if (VALID_NUMBER.matcher(string).matches()) {
+                sanitizedArray.add(string);
             }
         }
         return sanitizedArray.toArray(new String[0]);

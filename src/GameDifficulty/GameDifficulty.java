@@ -1,4 +1,4 @@
-package gameDifficulty;
+package GameDifficulty;
 
 public class GameDifficulty {
     private int width;

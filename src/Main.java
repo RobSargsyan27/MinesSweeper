@@ -1,14 +1,24 @@
-import arrayUtil.ArrayChecker;
-import arrayUtil.ArrayInitializer;
-import arrayUtil.ArrayValidator;
-import printerUtil.BoardPrinter;
-import printerUtil.GreetingPrinter;
-import gameDifficulty.GameDifficulty;
-import promptUtil.UserPromptUtil;
-import timerUtil.TimerUtil;
+import Utilities.arrayUtil.ArrayChecker;
+import Utilities.arrayUtil.ArrayInitializer;
+import Utilities.arrayUtil.ArrayValidator;
+import Utilities.printerUtil.BoardPrinter;
+import Utilities.printerUtil.GreetingPrinter;
+import GameDifficulty.GameDifficulty;
+import Utilities.promptUtil.UserPromptUtil;
+import Utilities.timerUtil.TimerUtil;
 
 public class Main {
     public static void main(String[] args) {
+        //Initialise driver for Postgresql
+
+        try{
+            Class.forName("org.postgresql.Driver");
+        }catch( ClassNotFoundException e){
+            System.out.println("The initialization of the driver was failed!: " + e.getMessage());
+        }
+
+
+
         //Print the Greeting and Rules of the game
         GreetingPrinter.printBoarder();
         GreetingPrinter.printLogo();

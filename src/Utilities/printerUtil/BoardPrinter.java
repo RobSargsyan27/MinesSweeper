@@ -1,4 +1,4 @@
-package printerUtil;
+package Utilities.printerUtil;
 
 public abstract class BoardPrinter {
     private BoardPrinter(){}

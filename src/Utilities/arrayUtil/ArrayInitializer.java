@@ -1,8 +1,8 @@
-package arrayUtil;
+package Utilities.arrayUtil;
 
 import java.util.Arrays;
 
-import gameDifficulty.GameDifficulty;
+import GameDifficulty.GameDifficulty;
 
 public abstract class ArrayInitializer {
     private ArrayInitializer() {}
@@ -13,12 +13,12 @@ public abstract class ArrayInitializer {
         String[][] board = new String[height][width];
 
         if (type.equals("open")) {
-            for (int i = 0; i < board.length; i++) {
-                Arrays.fill(board[i], " ");
+            for (String[] strings : board) {
+                Arrays.fill(strings, " ");
             }
         } else if (type.equals("close")) {
-            for (int i = 0; i < board.length; i++) {
-                Arrays.fill(board[i], "#");
+            for (String[] strings : board) {
+                Arrays.fill(strings, "#");
             }
         }
 

@@ -1,9 +1,9 @@
-package promptUtil;
+package Utilities.promptUtil;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
-import gameDifficulty.GameDifficulty;
+import GameDifficulty.GameDifficulty;
 
 public abstract class UserPromptUtil {
     static Scanner scanner = new Scanner(System.in);

@@ -1,4 +1,4 @@
-package timerUtil;
+package Utilities.timerUtil;
 
 public abstract class TimerUtil {
     private TimerUtil() {}

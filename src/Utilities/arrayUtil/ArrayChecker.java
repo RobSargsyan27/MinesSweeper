@@ -1,6 +1,6 @@
-package arrayUtil;
+package Utilities.arrayUtil;
 
-import gameDifficulty.GameDifficulty;
+import GameDifficulty.GameDifficulty;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 

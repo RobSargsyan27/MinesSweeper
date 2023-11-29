@@ -1,4 +1,4 @@
-package arrayUtil;
+package Utilities.arrayUtil;
 
 public abstract class ArrayValidator {
 
