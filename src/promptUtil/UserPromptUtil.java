@@ -1,7 +1,6 @@
 package promptUtil;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import gameDifficulty.GameDifficulty;

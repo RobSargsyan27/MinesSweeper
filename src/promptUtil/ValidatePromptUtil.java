@@ -1,8 +1,6 @@
 package promptUtil;
 
 import gameDifficulty.GameDifficulty;
-
-import javax.naming.InsufficientResourcesException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
