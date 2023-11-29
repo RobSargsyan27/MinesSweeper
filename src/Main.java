@@ -6,16 +6,20 @@ import Utilities.printerUtil.GreetingPrinter;
 import GameDifficulty.GameDifficulty;
 import Utilities.promptUtil.UserPromptUtil;
 import Utilities.timerUtil.TimerUtil;
+import DBConnection.DBConnection;
+
+import java.sql.Connection;
 
 public class Main {
     public static void main(String[] args) {
         //Initialise driver for Postgresql
-
         try{
             Class.forName("org.postgresql.Driver");
         }catch( ClassNotFoundException e){
             System.out.println("The initialization of the driver was failed!: " + e.getMessage());
         }
+
+        Connection connection = DBConnection.initiliseConnection();
 
 
 
