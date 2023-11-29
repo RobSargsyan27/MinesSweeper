@@ -5,6 +5,7 @@ import java.util.Date;
 public class GameSession {
 
     private String[][] openBoard;
+    private String[][] closeBoard;
     private String time;
     private String gameDifficulty;
     private String userName;
